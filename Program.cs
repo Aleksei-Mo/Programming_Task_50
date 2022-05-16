@@ -1,7 +1,7 @@
 ﻿// Task 50. Напишите программу, которая на вход принимает позиции элемента в двумерном массиве, и возвращает 
 //значение этого элемента или же указание, что такого элемента нет.
 Console.Clear();
-Console.WriteLine("This program ");
+Console.WriteLine("This program find array element by the entered indexes.");
 Console.Write("Enter number of columns: ");
 int numberCol = Convert.ToInt32(Console.ReadLine());
 Console.Write("Enter number of rows: ");
