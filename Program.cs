@@ -13,13 +13,13 @@ int upperLim = Convert.ToInt32(Console.ReadLine());
 Console.Write("Enter precision for numbers: ");
 int precision = Convert.ToInt32(Console.ReadLine());
 double[,] randomArray = new double[numberCol, numberRow];
+
 FillArray(randomArray,numberCol,numberRow,lowerLim,upperLim,precision);
 PrintArray(randomArray);
 Console.Write("Enter column index: ");
 int indexCol = Convert.ToInt32(Console.ReadLine())-1;//make offset "-1" to start array indexes from 1
 Console.Write("Enter row index: ");
 int indexRow = Convert.ToInt32(Console.ReadLine())-1;//make offset "-1" to start array indexes from 1
-
 if (indexCol < 0 ||
     indexCol > randomArray.GetLength(0) ||
     indexRow < 0 ||
@@ -43,6 +43,7 @@ for (int i = 0; i < randomArray.GetLength(0); i++)
     }
 }
 }
+
 void PrintArray(double[,] array)
 {
     for (int i = 0; i < array.GetLength(0); i++)
