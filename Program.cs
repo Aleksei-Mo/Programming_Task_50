@@ -2,46 +2,40 @@
 //значение этого элемента или же указание, что такого элемента нет.
 Console.Clear();
 Console.WriteLine("This program find array element by the entered indexes.");
-Console.Write("Enter number of columns: ");
-int numberCol = Convert.ToInt32(Console.ReadLine());
-Console.Write("Enter number of rows: ");
-int numberRow = Convert.ToInt32(Console.ReadLine());
-Console.Write("Enter lower limit for random range: ");
-int lowerLim = Convert.ToInt32(Console.ReadLine());
-Console.Write("Enter upper limit for random range: ");
-int upperLim = Convert.ToInt32(Console.ReadLine());
-Console.Write("Enter precision for numbers: ");
-int precision = Convert.ToInt32(Console.ReadLine());
-double[,] randomArray = new double[numberCol, numberRow];
+int numberRow = EnterUserData("Enter number of rows:");
+int numberCol = EnterUserData("Enter number of columns:");
+int lowerLim = EnterUserData("Enter lower limit for random range:");
+int upperLim = EnterUserData("Enter upper limit for random range:");
+int precision = EnterUserData("Enter precision for numbers: ");
+double[,] randomArray = new double[numberRow, numberCol];
 
-FillArray(randomArray,numberCol,numberRow,lowerLim,upperLim,precision);
+FillArray(randomArray, numberRow, numberCol, lowerLim, upperLim, precision);
 PrintArray(randomArray);
-Console.Write("Enter column index: ");
-int indexCol = Convert.ToInt32(Console.ReadLine())-1;//make offset "-1" to start array indexes from 1
-Console.Write("Enter row index: ");
-int indexRow = Convert.ToInt32(Console.ReadLine())-1;//make offset "-1" to start array indexes from 1
-if (indexCol < 0 ||
-    indexCol > randomArray.GetLength(0) ||
-    indexRow < 0 ||
-    indexRow > randomArray.GetLength(1))
+int indexRow = EnterUserData("Enter row index:") - 1;//make offset "-1" to start array indexes from 1
+int indexCol = EnterUserData("Enter column index:") - 1;//make offset "-1" to start array indexes from 1
+
+if (indexRow < 0 ||
+    indexRow > randomArray.GetLength(0) ||
+    indexCol < 0 ||
+    indexCol > randomArray.GetLength(1))
 {
     Console.WriteLine("There is no any array element with the entered indexes. Try again!");
 }
 else
 {
-    Console.WriteLine(randomArray[indexCol, indexRow]);
+    Console.WriteLine(randomArray[indexRow, indexCol]);
 }
 
-void  FillArray (double [,] array,int numberCol, int numberRow, int lowerLim, int upperLim, int precision)
+void FillArray(double[,] array, int numberRow, int numberCol, int lowerLim, int upperLim, int precision)
 {
-for (int i = 0; i < randomArray.GetLength(0); i++)
-{
-    for (int j = 0; j < randomArray.GetLength(1); j++)
+    for (int i = 0; i < randomArray.GetLength(0); i++)
     {
-        double randomNum = new Random().NextDouble() * (upperLim - lowerLim);
-        randomArray[i, j] = Math.Round(randomNum, precision);
+        for (int j = 0; j < randomArray.GetLength(1); j++)
+        {
+            double randomNum = new Random().NextDouble() * (upperLim - lowerLim);
+            randomArray[i, j] = Math.Round(randomNum, precision);
+        }
     }
-}
 }
 
 void PrintArray(double[,] array)
@@ -54,4 +48,10 @@ void PrintArray(double[,] array)
         }
         Console.WriteLine();
     }
+}
+
+int EnterUserData(string nameUserData)
+{
+    Console.Write($"{nameUserData}");
+    return Convert.ToInt32(Console.ReadLine());
 }
